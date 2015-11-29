@@ -64,5 +64,37 @@ public class KewThinClientConfiguration {
 	public KEWConfigurer kewConfigurer(Config config) {
 		return new KEWConfigurer();
 	}
+
+	public String getKeystoreFile() {
+		return keystoreFile;
+	}
+
+	public void setKeystoreFile(String keystoreFile) {
+		this.keystoreFile = keystoreFile;
+	}
+
+	public String getKeystoreAlias() {
+		return keystoreAlias;
+	}
+
+	public void setKeystoreAlias(String keystoreAlias) {
+		this.keystoreAlias = keystoreAlias;
+	}
+
+	public String getKeystorePassword() {
+		return keystorePassword;
+	}
+
+	public void setKeystorePassword(String keystorePassword) {
+		this.keystorePassword = keystorePassword;
+	}
+
+	public String getRiceServerUrl() {
+		return riceServerUrl;
+	}
+
+	public void setRiceServerUrl(String riceServerUrl) {
+		this.riceServerUrl = riceServerUrl;
+	}
 	
 }
