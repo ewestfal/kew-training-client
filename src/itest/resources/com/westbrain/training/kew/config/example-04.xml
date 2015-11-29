@@ -44,7 +44,7 @@
 			</routeNodes>
 		</documentType>
 	</documentTypes>
-	<!--  rules xmlns="ns:workflow/Rule" xsi:schemaLocation="ns:workflow/Rule resource:Rule">
+	<rules xmlns="ns:workflow/Rule" xsi:schemaLocation="ns:workflow/Rule resource:Rule">
 		<rule>
 			<documentType>ConditionalSplitExample</documentType>
 			<ruleTemplate>SimpleRuleTemplate</ruleTemplate>
@@ -69,5 +69,5 @@
 				</responsibility>
 			</responsibilities>
 		</rule>
-	</rules -->
+	</rules>
 </data>
