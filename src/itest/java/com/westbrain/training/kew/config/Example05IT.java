@@ -7,6 +7,8 @@ import org.kuali.rice.kew.api.WorkflowDocumentFactory;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.westbrain.training.kew.TrackingPostProcessor;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @IntegrationTest
 @WebIntegrationTest
@@ -18,6 +20,9 @@ public class Example05IT {
 
 	@Test
 	public void testPostProcessor() throws Exception {
+		
+		// reset the post processor to clear out any changes that may have already been tracked
+		TrackingPostProcessor.resetRouteStatusChanges();
 		
 		// Route a new document as then admin user and attach XML to it to indicate we should follow Branch1
 		
