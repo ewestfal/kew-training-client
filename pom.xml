@@ -22,7 +22,35 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<rice.version>2.6.0-M1-SNAPSHOT</rice.version>
+		<kuali-util.version>4.4.17</kuali-util.version>
+		<eclipselink.version>2.6.1</eclipselink.version>
+		<mysql-connector-java.version>5.1.37</mysql-connector-java.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>org.eclipse.persistence.core</artifactId>
+				<version>${eclipselink.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>org.eclipse.persistence.jpa</artifactId>
+				<version>${eclipselink.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>org.eclipse.persistence.moxy</artifactId>
+				<version>${eclipselink.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector-java.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -45,6 +73,18 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jersey</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
@@ -53,7 +93,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.kuali.common</groupId>
+			<artifactId>kuali-util</artifactId>
+			<version>${kuali-util.version}</version>
+		</dependency>
 		<!-- Kuali Rice Dependencies -->
 		<dependency>
 			<groupId>org.kuali.rice</groupId>
@@ -65,14 +109,12 @@
 			<artifactId>rice-impl</artifactId>
 			<version>${rice.version}</version>
 		</dependency>
+
+		<!-- We are usint MySQL -->
 		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>2.11.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			
 		</dependency>
 	</dependencies>
 

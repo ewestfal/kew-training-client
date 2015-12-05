@@ -26,7 +26,7 @@
 					<activationType>P</activationType>
 				</start>
 				<split name="ConditionalSplit">
-					<type>com.westbrain.rice.kew.engine.node.XPathSplitNode</type>
+					<type>org.kuali.rice.kew.engine.node.XPathSplitNode</type>
 					<branchDecisions>
 					  <xpath expression="//branchNumber = '1'" branchName="Branch1"/>
 					  <xpath expression="//branchNumber = '2'" branchName="Branch2"/>

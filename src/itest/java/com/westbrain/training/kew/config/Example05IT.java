@@ -4,14 +4,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kuali.rice.kew.api.WorkflowDocument;
 import org.kuali.rice.kew.api.WorkflowDocumentFactory;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.westbrain.training.kew.Application;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@IntegrationTest
 @WebIntegrationTest
 public class Example05IT {
 
@@ -26,11 +23,7 @@ public class Example05IT {
 		
 		WorkflowDocument document = WorkflowDocumentFactory.createDocument(ADMIN_PID, EXAMPLE_DOC);
 		document.route("");
-		AsyncKew.waitTrue(document).isFinal();
-		
-		// give a bit of time to make sure the remote calls to the PP are made
-		Thread.sleep(500);
-		
+				
 		// use the TrackingPostProcessor to verify that the document transitioned through it's various statuses.
 		// The status codes it transitions through are: I -> R -> P -> F
 		// This corresponds to the following document statuses:

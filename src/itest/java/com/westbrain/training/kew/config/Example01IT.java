@@ -1,6 +1,5 @@
 package com.westbrain.training.kew.config;
 
-import static com.westbrain.training.kew.config.AsyncKew.waitTrue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -13,13 +12,10 @@ import org.kuali.rice.kew.api.action.AdHocToGroup;
 import org.kuali.rice.kew.api.action.AdHocToPrincipal;
 import org.kuali.rice.kim.api.group.Group;
 import org.kuali.rice.kim.api.services.KimApiServiceLocator;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.westbrain.training.kew.Application;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@IntegrationTest
 public class Example01IT {
 
 	private static final String ADMIN_PID = "admin";
@@ -39,7 +35,7 @@ public class Example01IT {
 		assertNotNull("Document should have a document id", document.getDocumentId());
 		document.route("");
 		
-		assertTrue("Document should be final since no requests generated.", waitTrue(document).isFinal());
+		assertTrue("Document should be final since no requests generated.", document.isFinal());
 		
 		/**
 		 *  Create a new document but "adhoc" it to user1
@@ -53,9 +49,9 @@ public class Example01IT {
 		
 		// now the document should have an outstanding approval request to user1 and should be ENROUTE
 		
-		assertTrue(waitTrue(document).isEnroute());
+		assertTrue(document.isEnroute());
 		document.switchPrincipal(USER1_PID);
-		assertTrue(waitTrue(document).isApprovalRequested());
+		assertTrue(document.isApprovalRequested());
 
 		// now approve as user1
 		
@@ -63,7 +59,7 @@ public class Example01IT {
 		
 		// all approvals satisfied, so document should now be final
 		
-		assertTrue(waitTrue(document).isFinal());
+		assertTrue(document.isFinal());
 		
 	}
 	
@@ -88,7 +84,7 @@ public class Example01IT {
 		
 		// document should be ENROUTE now
 		
-		assertTrue(waitTrue(document).isEnroute());
+		assertTrue(document.isEnroute());
 		
 		Thread.sleep(5000);
 		
@@ -96,12 +92,12 @@ public class Example01IT {
 
 		document.refresh();
 		
-		assertTrue("admin should have approval request", waitTrue(document).isApprovalRequested());
+		assertTrue("admin should have approval request", document.isApprovalRequested());
 		
 		// load the document as notsys
 		
 		document.switchPrincipal(NOTSYS_PID);
-		assertTrue("notsys should have approval request", waitTrue(document).isApprovalRequested());
+		assertTrue("notsys should have approval request", document.isApprovalRequested());
 		
 		// should be able to approve as either admin or user1 now and the document will go final
 		// when routing to Groups, only one member of the group is required to approve the document
@@ -110,7 +106,7 @@ public class Example01IT {
 		
 		// all approvals satisfied, so document should now be final
 		
-		assertTrue(waitTrue(document).isFinal());
+		assertTrue(document.isFinal());
 		
 	}
 	

@@ -1,19 +1,15 @@
 package com.westbrain.training.kew.config;
 
-import static com.westbrain.training.kew.config.AsyncKew.waitTrue;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kuali.rice.kew.api.WorkflowDocument;
 import org.kuali.rice.kew.api.WorkflowDocumentFactory;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.westbrain.training.kew.Application;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@IntegrationTest
 public class Example02IT {
 
 	private static final String ADMIN_PID = "admin";
@@ -29,18 +25,18 @@ public class Example02IT {
 		WorkflowDocument document = WorkflowDocumentFactory.createDocument(ADMIN_PID, EXAMPLE_DOC);
 		document.route("");
 		
-		assertTrue("Document should be ENROUTE.", waitTrue(document).isEnroute());
+		assertTrue("Document should be ENROUTE.", document.isEnroute());
 		
 		// the document should now be in user1's action list
 		
 		document.switchPrincipal(USER1_PID);
-		assertTrue("user1 should have an approval request", waitTrue(document).isApprovalRequested());
+		assertTrue("user1 should have an approval request", document.isApprovalRequested());
 		
 		// approval as user1, the document should go FINAL
 		
 		document.approve("Approving as user1");
 		
-		assertTrue("Document should be FINAL.", waitTrue(document).isFinal());
+		assertTrue("Document should be FINAL.", document.isFinal());
 	}
 	
 	@Test
@@ -56,7 +52,7 @@ public class Example02IT {
 		// user1's route document action should satisfy the subsequent approval that get's generated
 		// that means the document should be FINAL!
 		
-		assertTrue("Document should be FINAL", waitTrue(document).isFinal());
+		assertTrue("Document should be FINAL", document.isFinal());
 				
 	}
 	

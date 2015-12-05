@@ -7,7 +7,7 @@
 		<documentType>
 			<name>PostProcessorExample</name>
 			<label>PostProcessorExample</label>
-			<postProcessorName>com.westbrain.rice.kew.engine.node.RestPostProcessor</postProcessorName>
+			<postProcessorName>com.westbrain.training.kew.TrackingPostProcessor</postProcessorName>
 			<routePaths>
 				<routePath>
 					<start name="AdHoc"/>
