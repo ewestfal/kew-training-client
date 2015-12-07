@@ -20,6 +20,11 @@ import org.springframework.context.annotation.Configuration;
 
 import bitronix.tm.resource.jdbc.lrc.LrcXADataSource;
 
+/**
+ * Configures and Embedded KEW client.
+ * 
+ * @author Eric Westfall
+ */
 @Configuration
 public class KewEmbeddedClientConfiguration {
 		

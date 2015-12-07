@@ -1,0 +1,10 @@
+{
+  "departments": [
+	{ "code": "BIO", "name": "Biology" },
+	{ "code": "BUS", "name": "Business" },
+	{ "code": "CHEM", "name": "Chemistry" },
+	{ "code": "HR", "name": "Human Resources" },
+	{ "code": "IT", "name": "Information Technology" }
+  ]
+}
+	

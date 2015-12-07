@@ -1,0 +1,16 @@
+# id of the application which uniquely identifies it
+application.id: kew-training-client
+
+# run kim and kew in embedded mode
+kim.mode: EMBEDDED
+kew.mode: EMBEDDED
+
+# default turning off database portions of KSB so that we aren't required to insert messaging or quartz tables
+useQuartzDatabase: false
+message:
+  persistence: false
+  delivery: synchronous
+
+# we are running embedded kew and kim, but unfortunately that means we have to load a bunch of web stuff
+# make our lives easier by forgoing the loading of web-related resource files for Struts
+rice.struts.message.resources:

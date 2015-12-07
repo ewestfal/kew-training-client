@@ -13,6 +13,11 @@ import org.springframework.context.annotation.Primary;
 
 import bitronix.tm.resource.jdbc.lrc.LrcXADataSource;
 
+/**
+ * Configures the applications XA and Non-XA datasources.
+ * 
+ * @author Eric Westfall
+ */
 @Configuration
 public class DatabaseConfiguration {
 		

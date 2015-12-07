@@ -5,3 +5,6 @@ target
 .project
 .settings
 .springBeans
+.factorypath
+node_modules
+

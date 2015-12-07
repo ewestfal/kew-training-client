@@ -18,12 +18,27 @@ import org.springframework.core.env.PropertySource;
 
 import com.google.common.base.Preconditions;
 
+/**
+ * Initializes the Kuali Rice configuration by combining properties defined in the Spring
+ * {@link ConfigurableEnvironment} with the Kuali Rice common-config-defaults.xml.
+ * 
+ * <p>This will invoke {@link ConfigContext#init(org.kuali.rice.core.api.config.property.Config) with
+ * the resulting config.</p>
+ * 
+ * <p>Note that this class does not inject Rice configuration back into the ConfigurableEnvironment as well.
+ * This is ok because Rice internally uses the ConfigContext to access all configuration information.</p>
+ * 
+ * @author Eric Westfall
+ */
 public class RiceConfigInjector {
 
 	public static void injectDefaults(ConfigurableEnvironment env) {
 		try {
+			// Unfortunately, getting a simple Properties object of all configuration known to Spring is a messy affair
 			Properties envProperties = getAllEnumerableProperties(env);
-			envProperties.put("rice.struts.message.resources", "");
+			// note that even though this would technically override anything configured in the spring environment with
+			// the configuration from common-config-defaults.xml, evetying in that file has overrid="false" set. So if 
+			// a property is already defined in the Spring Environment, it will not be overriden by the defaults.
 			JAXBConfigImpl config = new JAXBConfigImpl("classpath:META-INF/common-config-defaults.xml", envProperties);
 			config.parseConfig();	
 			ConfigContext.init(config);

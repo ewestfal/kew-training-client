@@ -1,0 +1,39 @@
+{
+  "name": "kew-training-client",
+  "version": "0.0.1",
+  "description": "KEW Training Application",
+  "private": true,
+  "scripts": {
+    "build": "node_modules/.bin/webpack",
+    "start": "node_modules/.bin/webpack-dev-server --hot --inline --host 0.0.0.0 --port 3000 --output.publicPath=http://localhost:3000/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babelify": "^7.2.0",
+    "babel-core": "^6.3.13",
+    "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "bootstrap": "^3.3.6",
+    "css-loader": "^0.23.0",
+    "file-loader": "^0.8.5",
+    "isomorphic-fetch": "^2.2.0",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.2",
+    "lodash": "^3.10.1",
+    "react": "^0.14.3",    
+    "react-bootstrap": "^0.28.1",
+    "react-dom": "^0.14.3",
+    "react-hot-loader": "^1.3.0",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4",
+    "redux-devtools": "^2.1.5",
+    "redux-logger": "^2.1.3",
+    "redux-thunk": "^1.0.0",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"    
+  }
+}
