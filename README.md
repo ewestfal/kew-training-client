@@ -18,7 +18,8 @@ and standalone server have been imported and trusted in each keystore.
 
 To run this application, it will need a configuration file passed to it in the following form:
 
-```server.port: 8081
+```
+server.port: 8081
 keystore:
   file: /usr/local/rice/rice.keystore
   alias: rice
