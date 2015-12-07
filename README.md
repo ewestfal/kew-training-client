@@ -1,13 +1,12 @@
 # kew-training-client
 
-A Kuali Enterprise Workflow "thin-client" application used for training purposes.
+A Kuali Enterprise Workflow "embedded" client application used for training purposes.
 
 This is a Spring Boot application, so is configured to run as such.
 
-NOTE: This client currently depends on 2.6.0-M1-SNAPSHOT of Kuali Rice since this version has been
+NOTE: This client currently depends on 2.6.0-M1-SNAPSHOT of Kuali Rice since that version has been
 updated to a newer version of Spring that is compatible with Spring Boot. You will likely need to
-clone this version from https://github.com/kuali/rice and execute an `mvn clean install` in order
-to install it into your local Maven repository.
+clone this version from https://github.com/kuali/rice (currently on master) and execute a `mvn clean install` in order to install it into your local Maven repository.
 
 ## Configuration
 
