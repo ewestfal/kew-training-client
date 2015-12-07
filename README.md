@@ -8,6 +8,12 @@ NOTE: This client currently depends on 2.6.0-M1-SNAPSHOT of Kuali Rice since tha
 updated to a newer version of Spring that is compatible with Spring Boot. You will likely need to
 clone this version from https://github.com/kuali/rice (currently on master) and execute a `mvn clean install` in order to install it into your local Maven repository.
 
+## Dependencies
+
+You must have a fully functional Kuali Rice standalone server (2.5.x or later) running for this client
+application to communicate with. You must ensure that any certificates between the client application
+and standalone server have been imported and trusted in each keystore.
+
 ## Configuration
 
 To run this application, it will need a configuration file passed to it in the following form:
