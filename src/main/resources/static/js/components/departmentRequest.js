@@ -1,8 +1,11 @@
 import { Grid, Row, Col, ButtonInput, Input } from 'react-bootstrap';
-import React, {Component, PropTypes} from 'react';
-import {reduxForm, reset, resetForm, initialize} from 'redux-form';
-export const fields = ['name', 'test', 'departmentCode', 'requestText'];
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { reduxForm, reset, resetForm, initialize } from 'redux-form';
 
+import { fetchDepartments } from "../actions";
+
+export const fields = ['name', 'test', 'departmentCode', 'requestText'];
 
 class DepartmentSelect extends Component {
 	
@@ -48,7 +51,7 @@ class DepartmentRequestForm extends Component {
       })
     }).then(function() {
     	that.refs.form.reset();
-    	dispatch(reset('departmentRequest'));
+    	dispatch(reset('departmentRequestForm'));
     });
   }
   
@@ -86,7 +89,29 @@ class DepartmentRequestForm extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'departmentRequest',
+const DepartmentRequestReduxForm = reduxForm({
+  form: 'departmentRequestForm',
   fields
 })(DepartmentRequestForm);
+
+
+class DepartmentRequest extends Component {
+	static propTypes = {
+	  dispatch: PropTypes.func.isRequired,
+	  departments: PropTypes.object.isRequired,
+	};
+	
+	componentWillMount() {		
+		this.props.dispatch(fetchDepartments());
+	}
+	
+	render() {
+		return (		 
+	    	  <DepartmentRequestReduxForm departments={this.props.departments.items} />
+		);
+	}
+}
+
+export default connect((state) => state)(DepartmentRequest);
+
+
