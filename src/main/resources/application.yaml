@@ -14,3 +14,9 @@ message:
 # we are running embedded kew and kim, but unfortunately that means we have to load a bunch of web stuff
 # make our lives easier by forgoing the loading of web-related resource files for Struts
 rice.struts.message.resources:
+
+# set base rest api path
+spring.data.rest.basePath: /api
+
+# tell hibernate to update our schema for us automatically
+spring.jpa.hibernate.ddl-auto: update

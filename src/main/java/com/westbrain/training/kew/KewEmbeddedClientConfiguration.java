@@ -27,20 +27,7 @@ import bitronix.tm.resource.jdbc.lrc.LrcXADataSource;
  */
 @Configuration
 public class KewEmbeddedClientConfiguration {
-		
-	@Autowired
-	private DataSource datasource;
-	@Autowired
-	@Qualifier("nonTxDataSource")
-	private DataSource nonTxDatasource;
-	@Autowired
-	@Qualifier("riceDataSource")
-	private DataSource riceDataSource;
-	@Autowired
-	private TransactionManager jtaTransactionManager;
-	@Autowired
-	private UserTransaction userTransaction;
-	
+			
 	@Bean
 	@Autowired
 	@ConfigurationProperties("rice.datasource")
@@ -51,10 +38,15 @@ public class KewEmbeddedClientConfiguration {
 	}
 	
 	@Bean
-	public CoreConfigurer coreConfigurer() {
+	@Autowired
+	public CoreConfigurer coreConfigurer(DataSource dataSource,
+			@Qualifier("nonTxDataSource") DataSource nonTxDataSource,
+			@Qualifier("riceDataSource") DataSource riceDataSource,
+			TransactionManager jtaTransactionManager,
+			UserTransaction userTransaction) {
 		CoreConfigurer configurer = new CoreConfigurer();
-		configurer.setDataSource(datasource);
-		configurer.setNonTransactionalDataSource(nonTxDatasource);
+		configurer.setDataSource(dataSource);
+		configurer.setNonTransactionalDataSource(nonTxDataSource);
 		configurer.setServerDataSource(riceDataSource);
 		configurer.setTransactionManager(jtaTransactionManager);
 		configurer.setUserTransaction(userTransaction);		

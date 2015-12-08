@@ -20,6 +20,9 @@ function departments(state = {
 	}
 }
 
+import {reducer as formReducer} from 'redux-form';
+
 export default combineReducers({
-	departments
+	departments,
+	form: formReducer
 });

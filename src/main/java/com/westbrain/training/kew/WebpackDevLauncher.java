@@ -32,21 +32,17 @@ public class WebpackDevLauncher {
 		
 		private static final String[] WIN_DEV_SERVER_COMMAND = {"cmd", "-c", "node_modules/.bin/webpack-dev-server --hot --inline --host 0.0.0.0 --port 3000 --output.publicPath=http://localhost:3000/"};
 		private static final String[] NIX_DEV_SERVER_COMMAND = {"/bin/bash", "-l", "-c", "node_modules/.bin/webpack-dev-server --hot --inline --host 0.0.0.0 --port 3000 --output.publicPath=http://localhost:3000/"};
-		private static final String WEBPACK_SERVER_PROPERTY = "webpack-server-loaded";
-
 		
 		private Process process;
 
 		@Override
 		public void afterPropertiesSet() throws Exception {
-			if (System.getProperty(WEBPACK_SERVER_PROPERTY) == null) {
-				process = startWebpackDevServer(isWindows() ? WIN_DEV_SERVER_COMMAND : NIX_DEV_SERVER_COMMAND);
-			}
+			process = startWebpackDevServer(isWindows() ? WIN_DEV_SERVER_COMMAND : NIX_DEV_SERVER_COMMAND);
 		}
 
 		@Override
 		public void destroy() throws Exception {
-			if (process != null) {
+			if (process != null) {				
 				process.getOutputStream().close();
 				process.getInputStream().close();
 				process.getErrorStream().close();
@@ -56,9 +52,7 @@ public class WebpackDevLauncher {
 		}
 
 		private Process startWebpackDevServer(String[] command) throws IOException {
-			Process process = new ProcessBuilder(command).inheritIO().start();			
-			System.setProperty(WEBPACK_SERVER_PROPERTY, "true");
-			return process;
+			return new ProcessBuilder(command).inheritIO().start();			
 		}
 		
 		private boolean isWindows() {
