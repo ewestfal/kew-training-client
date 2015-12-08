@@ -94,14 +94,13 @@ const DepartmentRequestReduxForm = reduxForm({
   fields
 })(DepartmentRequestForm);
 
-
 class DepartmentRequest extends Component {
 	static propTypes = {
 	  dispatch: PropTypes.func.isRequired,
 	  departments: PropTypes.object.isRequired,
 	};
 	
-	componentWillMount() {		
+	componentWillMount() {
 		this.props.dispatch(fetchDepartments());
 	}
 	
