@@ -5,7 +5,7 @@ import { reduxForm, reset, resetForm, initialize } from 'redux-form';
 
 import { fetchDepartments } from "../actions";
 
-export const fields = ['name', 'test', 'departmentCode', 'requestText'];
+export const fields = ['name', 'departmentCode', 'requestText'];
 
 class DepartmentSelect extends Component {
 	
@@ -37,13 +37,13 @@ class DepartmentRequestForm extends Component {
 	
   doSubmit(values, dispatch) {
 	  const that = this;
-	  console.log(JSON.stringify(values));
     fetch('/api/departmentRequests', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'same-origin',
       body: JSON.stringify({
         requestorName: values.name,
         departmentCode: values.departmentCode,
@@ -57,7 +57,7 @@ class DepartmentRequestForm extends Component {
   
   render() {		
     const {
-      fields: {name, departmentCode, requestText, test},
+      fields: {name, departmentCode, requestText},
       handleSubmit,
       resetForm,
       submitting
@@ -77,7 +77,6 @@ class DepartmentRequestForm extends Component {
                   <Input type="text" label="Your Name" {...name} />
                   <DepartmentSelect departments={this.props.departments} {...departmentCode} />
                   <Input type="textarea" label="Request" rows={5} {...requestText} />
-                  <Input type="text" label="Test" {...test} />
                   <ButtonInput type="submit" value="Submit" />
   	            </Col>
 	          </Row>		          

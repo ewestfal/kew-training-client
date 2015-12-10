@@ -6,6 +6,9 @@ import javax.transaction.UserTransaction;
 
 import org.kuali.rice.core.impl.config.module.CoreConfigurer;
 import org.kuali.rice.coreservice.impl.config.CoreServiceConfigurer;
+import org.kuali.rice.kew.api.KewApiServiceLocator;
+import org.kuali.rice.kew.api.action.WorkflowDocumentActionsService;
+import org.kuali.rice.kew.api.document.WorkflowDocumentService;
 import org.kuali.rice.kew.config.KEWConfigurer;
 import org.kuali.rice.kim.config.KIMConfigurer;
 import org.kuali.rice.krad.config.KRADConfigurer;
@@ -79,14 +82,27 @@ public class KewEmbeddedClientConfiguration {
 	
 	@Bean
 	@Autowired
-	public KIMConfigurer kimConfigurer(CoreConfigurer coreConfigurer) {
+	public KIMConfigurer kimConfigurer(CoreConfigurer coreConfigurer, KSBConfigurer ksbConfigurer) {
 		return new KIMConfigurer();
 	}
 	
 	@Bean
 	@Autowired
-	public KEWConfigurer kewConfigurer(CoreConfigurer coreConfigurer) {
+	public KEWConfigurer kewConfigurer(CoreConfigurer coreConfigurer, KSBConfigurer ksbConfigurer, KRADConfigurer kradConfigurer) {
 		return new KEWConfigurer();
 	}
+	
+	@Bean
+	@Autowired
+	public WorkflowDocumentService workflowDocumentService(KEWConfigurer kewConfigurer) {
+		return KewApiServiceLocator.getWorkflowDocumentService();
+	}
+	
+	@Bean
+	@Autowired
+	public WorkflowDocumentActionsService workflowDocumentActionsService(KEWConfigurer kewConfigurer) {
+		return KewApiServiceLocator.getWorkflowDocumentActionsService();
+	}
+
 	
 }

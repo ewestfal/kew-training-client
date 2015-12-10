@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import org.kuali.common.util.spring.PropertySourceConversionResult;
 import org.kuali.rice.core.api.config.ConfigurationException;
 import org.kuali.rice.core.api.config.property.ConfigContext;
 import org.kuali.rice.core.impl.config.property.JAXBConfigImpl;
@@ -15,8 +14,6 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
-
-import com.google.common.base.Preconditions;
 
 /**
  * Initializes the Kuali Rice configuration by combining properties defined in the Spring
@@ -57,10 +54,10 @@ public class RiceConfigInjector {
 		Collections.reverse(sources);
 
 		// Convert the list of PropertySource's to a list of Properties objects
-		PropertySourceConversionResult result = convertEnumerablePropertySources(sources);
+		List<Properties> result = convertEnumerablePropertySources(sources);
 
 		// Combine them into a single Properties object
-		return combine(result.getPropertiesList());
+		return combine(result);
 	}
 	
 	private static final Properties combine(List<Properties> properties) {
@@ -79,7 +76,6 @@ public class RiceConfigInjector {
 	 * Aggregate all <code>PropertySource<?><code> objects from the environment into a <code>List</code>
 	 */
 	private static List<PropertySource<?>> getPropertySources(ConfigurableEnvironment env) {
-		Preconditions.checkNotNull(env, "'env' cannot be null");
 		MutablePropertySources mps = env.getPropertySources();
 		List<PropertySource<?>> sources = new ArrayList<PropertySource<?>>();
 		Iterator<PropertySource<?>> itr = mps.iterator();
@@ -90,24 +86,17 @@ public class RiceConfigInjector {
 		return sources;
 	}
 	
-	private static PropertySourceConversionResult convertEnumerablePropertySources(List<PropertySource<?>> sources) {
-		PropertySourceConversionResult result = new PropertySourceConversionResult();
+	private static List<Properties> convertEnumerablePropertySources(List<PropertySource<?>> sources) {
 		List<Properties> list = new ArrayList<Properties>();
-		List<PropertySource<?>> converted = new ArrayList<PropertySource<?>>();
-		List<PropertySource<?>> skipped = new ArrayList<PropertySource<?>>();
 		// Extract property values from the sources and place them in a Properties object
 		for (PropertySource<?> source : sources) {
 			if (source instanceof EnumerablePropertySource) {
 				EnumerablePropertySource<?> eps = (EnumerablePropertySource<?>) source;
 				Properties sourceProperties = convert(eps);
 				list.add(sourceProperties);
-				converted.add(source);
 			}
 		}
-		result.setConverted(converted);
-		result.setSkipped(skipped);
-		result.setPropertiesList(list);
-		return result;
+		return list;
 	}
 	
 	/**

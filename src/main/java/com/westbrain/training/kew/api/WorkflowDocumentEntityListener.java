@@ -5,8 +5,8 @@ import javax.persistence.PostLoad;
 import org.kuali.rice.kew.api.KewApiServiceLocator;
 import org.kuali.rice.kew.api.document.DocumentStatus;
 
-public class WorkflowDocumentEntityListener {
-		
+public class WorkflowDocumentEntityListener {	
+	
 	@PostLoad
 	public void postLoad(DepartmentRequest departmentRequest) {
 		DocumentStatus documentStatus =

@@ -7,6 +7,8 @@
         <documentType>
             <name>DepartmentRequest</name>
             <label>Department Request</label>
+            <docHandler>http://localhost:8081/docHandler</docHandler>
+            <applicationId>kew-training-client</applicationId>
             <routePaths>
                 <routePath>
                     <start name="Start"/>
