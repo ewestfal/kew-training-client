@@ -81,4 +81,45 @@ public class Example04IT {
 
 	}
 	
+	@Test
+	public void testConditionalSplit_Both() throws Exception {
+		
+		// Route a new document as then admin user and attach XML to it to indicate we should follow Branch2
+		
+		WorkflowDocument document = WorkflowDocumentFactory.createDocument(ADMIN_PID, EXAMPLE_DOC);
+		document.setApplicationContent("<branches><branchNumber>1</branchNumber><branchNumber>2</branchNumber></branches>");
+		document.route("");
+		
+		assertTrue("Document should be ENROUTE.", document.isEnroute());
+		
+		// the document should now be only at the Branch2Node
+		Set<String> nodeNames = document.getNodeNames();
+		assertEquals("Document should have 2 active nodes.", 2, nodeNames.size());
+		assertTrue("Branch1Node should be active.", nodeNames.contains("Branch1Node"));
+		assertTrue("Branch2Node should be active.", nodeNames.contains("Branch2Node"));
+		
+		// there should be an outstanding approval request to user1 and user2 on each branch.
+		
+		document.switchPrincipal(USER1_PID);
+		assertTrue("user1 should have an approval request.", document.isApprovalRequested());
+		
+		// approve as user1
+		document.approve("Approving as user1");
+		
+		// document should still be enroute since user2 approval still pending
+		assertTrue("Document should still be ENROUTE", document.isEnroute());
+		
+		document.switchPrincipal(USER2_PID);
+		assertTrue("user2 should have an approval request.", document.isApprovalRequested());
+		
+		// approve as user2
+		document.approve("Approving as user2");
+		
+		// document should immediately go FINAL
+		
+		assertTrue("Document should be FINAL.", document.isFinal());
+
+	}
+
+	
 }

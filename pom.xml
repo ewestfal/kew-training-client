@@ -22,7 +22,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<rice.version>2.6.0-M1-SNAPSHOT</rice.version>
-		<kuali-util.version>4.4.17</kuali-util.version>
 		<eclipselink.version>2.6.1</eclipselink.version>
 		<mysql-connector-java.version>5.1.37</mysql-connector-java.version>
 	</properties>
@@ -92,11 +91,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.kuali.common</groupId>
-			<artifactId>kuali-util</artifactId>
-			<version>${kuali-util.version}</version>
 		</dependency>
 		<!-- Kuali Rice Dependencies -->
 		<dependency>

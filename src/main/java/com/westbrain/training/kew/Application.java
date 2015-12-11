@@ -23,7 +23,10 @@ public class Application {
 	public TrackingPostProcessor trackingPostProcessor() {
 		return new TrackingPostProcessor();
 	}
-		
+	
+	/**
+	 * Loads Kuali Rice configuration on startup, after Spring Environment has been prepared.
+	 */
 	static class StartupListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
 		@Override
