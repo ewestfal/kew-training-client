@@ -5,3 +5,5 @@ target
 .project
 .settings
 .springBeans
+/.apt_generated/
+.factorypath
