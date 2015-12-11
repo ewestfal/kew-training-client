@@ -12,7 +12,8 @@
 			<routePaths>
 				<routePath>
 					<start name="Start" nextNode="DepartmentApproval" />
-					<requests name="DepartmentApproval" />
+					<requests name="DepartmentApproval" nextNode="DepartmentHeadApproval"/>
+					<requests name="DepartmentHeadApproval"/>
 				</routePath>
 			</routePaths>
 			<routeNodes>
@@ -22,6 +23,9 @@
 				<requests name="DepartmentApproval">
 					<ruleTemplate>DepartmentTemplate</ruleTemplate>
 				</requests>
+				<requests name="DepartmentHeadApproval">
+                    <ruleTemplate>DepartmentHeadTemplate</ruleTemplate>
+                </requests>				
 			</routeNodes>
 		</documentType>
 	</documentTypes>
