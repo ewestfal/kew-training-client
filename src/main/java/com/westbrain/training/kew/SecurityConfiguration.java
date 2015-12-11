@@ -15,12 +15,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService);
 	}
 	
+	/**
+	 * Put security in front of everything except our "/remoting" endpoint for the KSB
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.anyRequest().authenticated()
-				.and()
+			.regexMatchers("^(?!/remoting).*$")
+			.authenticated()
+			.and()
 			.formLogin().and()
 			.httpBasic().and().csrf().disable();
 	}

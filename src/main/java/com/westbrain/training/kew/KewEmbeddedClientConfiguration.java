@@ -13,9 +13,11 @@ import org.kuali.rice.kew.config.KEWConfigurer;
 import org.kuali.rice.kim.config.KIMConfigurer;
 import org.kuali.rice.krad.config.KRADConfigurer;
 import org.kuali.rice.ksb.messaging.config.KSBConfigurer;
+import org.kuali.rice.ksb.messaging.servlet.KSBDispatcherServlet;
 import org.kuali.rice.location.impl.config.LocationConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jta.bitronix.PoolingDataSourceBean;
 import org.springframework.context.annotation.Bean;
@@ -104,5 +106,11 @@ public class KewEmbeddedClientConfiguration {
 		return KewApiServiceLocator.getWorkflowDocumentActionsService();
 	}
 
+	@Bean
+	public ServletRegistrationBean ksbDispatcherServlet() {
+		KSBDispatcherServlet ksbDispatcherServlet = new KSBDispatcherServlet();
+		ServletRegistrationBean servlet = new ServletRegistrationBean(ksbDispatcherServlet, "/remoting/*");
+		return servlet;
+	}
 	
 }
