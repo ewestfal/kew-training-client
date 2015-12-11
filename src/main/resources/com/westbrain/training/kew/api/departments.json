@@ -1,10 +1,10 @@
 {
   "departments": [
-	{ "code": "BIO", "name": "Biology" },
-	{ "code": "BUS", "name": "Business" },
-	{ "code": "CHEM", "name": "Chemistry" },
-	{ "code": "HR", "name": "Human Resources" },
-	{ "code": "IT", "name": "Information Technology" }
+    { "code": "BIO", "name": "Biology", "departmentHead": "eric"},
+    { "code": "BUS", "name": "Business", "departmentHead": "erin" },
+    { "code": "CHEM", "name": "Chemistry", "departmentHead": "fran" },
+    { "code": "HR", "name": "Human Resources", "departmentHead": "frank" },
+    { "code": "IT", "name": "Information Technology", "departmentHead": "fred" }
   ]
 }
 	
