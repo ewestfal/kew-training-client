@@ -41,12 +41,13 @@ public class DepartmentHeadRoleAttribute extends AbstractRoleAttribute {
 	
 	/**
 	 * This method simply identifies the roles that this attribute provides. It only provides a single
-	 * "Department Head" role.
+	 * "Department Head" role. Because of the way that these role attributes work, the first argument to
+	 * RoleName must always be the fully qualified class name of this RoleAttribute.
 	 */
 	@Override
 	public List<RoleName> getRoleNames() {
 		List<RoleName> roleNames = new ArrayList<RoleName>();
-		roleNames.add(new RoleName("DepartmentHeadRoleAttribute", "DepartmentHead", "Department Head")); 
+		roleNames.add(new RoleName(getClass().getName(), "DepartmentHead", "Department Head")); 
 		return roleNames;
 	}
 
