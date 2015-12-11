@@ -20,6 +20,7 @@ To run this application, it will need a configuration file passed to it in the f
 
 ```
 server.port: 8081
+application.url: http://localhost:8081
 keystore:
   file: /usr/local/rice/rice.keystore
   alias: rice
