@@ -2,12 +2,15 @@ package com.westbrain.training.kew.routing;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.kuali.rice.kew.api.identity.Id;
+import org.kuali.rice.kew.api.identity.PrincipalId;
 import org.kuali.rice.kew.api.rule.RoleName;
 import org.kuali.rice.kew.engine.RouteContext;
 import org.kuali.rice.kew.routeheader.DocumentContent;
@@ -19,6 +22,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import com.westbrain.training.kew.SpringContext;
+import com.westbrain.training.kew.api.Department;
 import com.westbrain.training.kew.api.DepartmentService;
 
 public class DepartmentHeadRoleAttribute extends AbstractRoleAttribute {
@@ -79,11 +83,10 @@ public class DepartmentHeadRoleAttribute extends AbstractRoleAttribute {
 	 */
 	@Override
 	public ResolvedQualifiedRole resolveQualifiedRole(RouteContext routeContext, String roleName,
-			String qualifiedRole) {
-		
-		// TODO - implement me!
-		
-		return null;
+			String qualifiedRole) {		
+		Department department = departmentService.getDepartmentByCode(qualifiedRole);
+		List<Id> recipients = Collections.singletonList(new PrincipalId(department.getDepartmentHead()));
+		return new ResolvedQualifiedRole("Department Head", recipients);
 	}
 	
 
