@@ -9,7 +9,7 @@ kew.mode: EMBEDDED
 useQuartzDatabase: false
 message:
   persistence: false
-  delivery: synchronous
+  delivery: async
 
 # we are running embedded kew and kim, but unfortunately that means we have to load a bunch of web stuff
 # make our lives easier by forgoing the loading of web-related resource files for Struts
