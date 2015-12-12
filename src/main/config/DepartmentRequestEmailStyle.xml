@@ -3,7 +3,9 @@
 <!ENTITY tab "&#x9;" ><!-- horizontal tab -->
 <!ENTITY n "&#xa;" ><!-- LF -->
 ]>
-<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData"><styles xmlns="ns:workflow/Style" xsi:schemaLocation="ns:workflow/Style resource:Style"><style name="BookOrder.EmailStyle"><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <styles xmlns="ns:workflow/Style" xsi:schemaLocation="ns:workflow/Style resource:Style">
+    <style name="DepartmentRequest.EmailStyle"><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:strip-space elements="*"/>
 
     <!-- "Muenchian" method of grouping: http://www.jenitennison.com/xslt/grouping/muenchian.html -->
