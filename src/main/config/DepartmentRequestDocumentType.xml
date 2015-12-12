@@ -11,7 +11,8 @@
 			<applicationId>kew-training-client</applicationId>
 			<routePaths>
 				<routePath>
-					<start name="Start" nextNode="DepartmentApproval" />
+					<start name="Start" nextNode="DepartmentPreApproval" />
+					<requests name="DepartmentPreApproval" nextNode="DepartmentApproval" />
 					<requests name="DepartmentApproval" nextNode="DepartmentHeadApproval" />
 					<requests name="DepartmentHeadApproval" nextNode="RequestManagerApproval" />
 					<role name="RequestManagerApproval" />
@@ -21,6 +22,15 @@
 				<start name="Start">
 					<activationType>P</activationType>
 				</start>
+				<requests name="DepartmentPreApproval">
+					<activationType>R</activationType>
+					<peopleFlows>
+						<peopleFlow>
+							<actionRequested>A</actionRequested>
+							<name namespace="KEW-TRAINING-CLIENT">DepartmentPreApproval</name>
+						</peopleFlow>
+					</peopleFlows>
+				</requests>
 				<requests name="DepartmentApproval">
 					<ruleTemplate>DepartmentTemplate</ruleTemplate>
 				</requests>
