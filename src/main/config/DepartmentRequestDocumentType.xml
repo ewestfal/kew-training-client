@@ -8,6 +8,11 @@
 			<name>DepartmentRequest</name>
 			<label>Department Request</label>
 			<docHandler>http://localhost:8081/docHandler</docHandler>
+			<attributes>
+              <attribute>
+                <name>DepartmentCodeSearchableAttribute</name>
+              </attribute>
+            </attributes>
 			<emailStylesheet>DepartmentRequest.EmailStyle</emailStylesheet>
 			<applicationId>kew-training-client</applicationId>
 			<routePaths>
