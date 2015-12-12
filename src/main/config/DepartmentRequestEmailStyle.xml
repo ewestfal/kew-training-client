@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE stylesheet [
-<!ENTITY tab "&#x9;" ><!-- horizontal tab -->
-<!ENTITY n "&#xa;" ><!-- LF -->
-]>
 <data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
   <styles xmlns="ns:workflow/Style" xsi:schemaLocation="ns:workflow/Style resource:Style">
     <style name="DepartmentRequest.EmailStyle"><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
@@ -18,27 +14,27 @@
             <subject>Action List Reminder <xsl:value-of select="actionItem/customSubject"/></subject>
             <body>Your Action List has an eDoc(electronic document) that needs your attention:
 
-Document ID:&tab;<xsl:value-of select="actionItem/actionItem/documentId"/>
-Initiator:&tab;&tab;<xsl:value-of select="actionItem/docInitiatorDisplayName"/>
-Type:&tab;&tab;Add/Modify <xsl:value-of select="actionItem/documentType/name"/>
-Title:&tab;&tab;<xsl:value-of select="actionItem/actionItem/docTitle"/>
+Document ID:&#x9;<xsl:value-of select="actionItem/actionItem/documentId"/>
+Initiator:&#x9;&#x9;<xsl:value-of select="actionItem/docInitiatorDisplayName"/>
+Type:&#x9;&#x9;Add/Modify <xsl:value-of select="actionItem/documentType/name"/>
+Title:&#x9;&#x9;<xsl:value-of select="actionItem/actionItem/docTitle"/>
 
 
 To respond to this eDoc:
-&tab;Go to <xsl:value-of select="$docHandlerUrl"/><xsl:choose>
+&#x9;Go to <xsl:value-of select="$docHandlerUrl"/><xsl:choose>
   <xsl:when test="contains($docHandlerUrl, '?')">&amp;</xsl:when>
   <xsl:otherwise>?</xsl:otherwise>
 </xsl:choose>docId=<xsl:value-of select="actionItem/actionItem/documentId"/>&amp;command=displayActionListView
 
-&tab;Or you may access the eDoc from your Action List:
-              &tab;Go to <xsl:value-of select="@actionListUrl"/>, and then click on the numeric Document ID: <xsl:value-of select="actionItem/actionItem/documentId"/> in the first column of the List.
+&#x9;Or you may access the eDoc from your Action List:
+              &#x9;Go to <xsl:value-of select="@actionListUrl"/>, and then click on the numeric Document ID: <xsl:value-of select="actionItem/actionItem/documentId"/> in the first column of the List.
 
 To view the route log of this document:
-&tab;Go to <xsl:value-of select="@routeLogUrl"/>
+&#x9;Go to <xsl:value-of select="@routeLogUrl"/>
 <xsl:value-of select="actionItem/actionItem/documentId"/>
 
               To change how these email notifications are sent(daily, weekly or none):
-&tab;Go to <xsl:value-of select="@preferencesUrl"/>
+&#x9;Go to <xsl:value-of select="@preferencesUrl"/>
 
 
 
@@ -75,16 +71,16 @@ Action Item sent to <xsl:value-of select="actionItem/actionItemPrincipalName"/>
          2) I want the unit test to pass, and given that it only uses two doc types, reversing
          the order will make it match the literal output of the Java version ;) -->
     <xsl:sort data-type="number" select="count(key('doctypes-by-name', docName))" order="descending"/>
-<xsl:text>&tab;</xsl:text><xsl:value-of select="count(key('doctypes-by-name', docName))"/><xsl:text>&tab;</xsl:text><xsl:value-of select="docName"/><xsl:text>&n;</xsl:text>
+<xsl:text>&#x9;</xsl:text><xsl:value-of select="count(key('doctypes-by-name', docName))"/><xsl:text>&#x9;</xsl:text><xsl:value-of select="docName"/><xsl:text>&#xa;</xsl:text>
 </xsl:for-each>
 
 To respond to each of these eDocs:
-&tab;Go to <xsl:value-of select="@actionListUrl"/>, and then click on its numeric Document ID in the first column of the List.
+&#x9;Go to <xsl:value-of select="@actionListUrl"/>, and then click on its numeric Document ID in the first column of the List.
 
 
 
 To change how these email notifications are sent (immediately, weekly or none):
-&tab;Go to <xsl:value-of select="@preferencesUrl"/>
+&#x9;Go to <xsl:value-of select="@preferencesUrl"/>
 
 
 
@@ -114,16 +110,16 @@ For additional help, email <![CDATA[<mailto:]]><xsl:value-of select="@applicatio
          2) I want the unit test to pass, and given that it only uses two doc types, reversing
          the order will make it match the literal output of the Java version ;) -->
     <xsl:sort data-type="number" select="count(key('doctypes-by-name', docName))" order="descending"/>
-<xsl:text>&tab;</xsl:text><xsl:value-of select="count(key('doctypes-by-name', docName))"/><xsl:text>&tab;</xsl:text><xsl:value-of select="docName"/><xsl:text>&n;</xsl:text>
+<xsl:text>&#x9;</xsl:text><xsl:value-of select="count(key('doctypes-by-name', docName))"/><xsl:text>&#x9;</xsl:text><xsl:value-of select="docName"/><xsl:text>&#xa;</xsl:text>
 </xsl:for-each>
 
 To respond to each of these eDocs:
-&tab;Go to <xsl:value-of select="@actionListUrl"/>, and then click on its numeric Document ID in the first column of the List.
+&#x9;Go to <xsl:value-of select="@actionListUrl"/>, and then click on its numeric Document ID in the first column of the List.
 
 
 
 To change how these email notifications are sent (immediately, daily or none):
-&tab;Go to <xsl:value-of select="@preferencesUrl"/>
+&#x9;Go to <xsl:value-of select="@preferencesUrl"/>
 
 
 
