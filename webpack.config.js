@@ -7,7 +7,8 @@ module.exports = {
     },
     output: {
         path: path.resolve('./target/classes/static'),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: "/"
     },
     module: {
         loaders: [
