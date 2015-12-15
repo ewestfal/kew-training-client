@@ -7,5 +7,5 @@ target
 .springBeans
 .factorypath
 node_modules
-
+transaction-logs
 /node/
