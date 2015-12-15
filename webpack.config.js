@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
     entry: {
       javascript: "./src/main/resources/static/js/index.js",
-      html: "./src/main/webapp/index.html"
+      html: "./src/main/resources/static/index.html"
     },
     output: {
         path: path.resolve('./target/classes/static'),
