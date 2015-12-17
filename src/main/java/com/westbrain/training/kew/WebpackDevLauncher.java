@@ -58,7 +58,7 @@ public class WebpackDevLauncher {
 
 	public static class WebpackRunner implements InitializingBean, DisposableBean {
 
-		private static final String[] WIN_DEV_SERVER_COMMAND = { "cmd", "-c", WEBPACK_CMD };
+		private static final String[] WIN_DEV_SERVER_COMMAND = { "cmd", "/c", WEBPACK_CMD };
 		private static final String[] NIX_DEV_SERVER_COMMAND = { "/bin/bash", "-l", "-c", WEBPACK_CMD };
 
 		private Process process;
